@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debateX — Multi-LLM Deliberation & Truth Engine</title>
+  <meta name="description" content="debateX is an open-source, self-hosted multi-LLM deliberation engine that passes queries through an anonymized 5-round debate council to eliminate single-model hallucinations and bias.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+
+  <!-- Google Fonts Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Screen Scanline Texture Overlay -->
+  <div class="scanlines"></div>
+
+  <!-- 1. Header/Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">debateX</a>
+      <nav class="nav-links">
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#capabilities" class="nav-link">Capabilities</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="https://github.com/pvsaravanan/debateX" target="_blank" rel="noopener noreferrer" class="nav-link github-link">
+          GitHub
+          <svg class="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </nav>
+      <a href="#waitlist-section" class="nav-cta">Get Early Access</a>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section (Vibrant Red) -->
+  <section class="hero-section">
+    <div class="hero-content text-reveal">
+      <h1 class="hero-title reveal">
+        Multi-LLM<br>
+        deliberation.<br>
+        No guesses. No bias.
+      </h1>
+      <p class="hero-subtext reveal">
+        An open-source cognitive consensus engine orchestrating an adversarial council of diverse language models. debateX cross-examines claims and delivers vetted certainty.
+      </p>
+      
+      <div class="hero-actions reveal">
+        <a href="#waitlist-section" class="cta-btn btn-primary">Join Waitlist</a>
+        <a href="#how-it-works" class="cta-btn btn-secondary">Our Approach</a>
+      </div>
+    </div>
+    
+    <!-- Ticker Strip embedded at the bottom boundary of the hero section -->
+    <div class="hero-ticker">
+      <div class="marquee">
+        <div class="marquee-content">
+          <span>5-ROUND DELIBERATION</span><span class="dot">·</span>
+          <span>8 LLM COUNCIL</span><span class="dot">·</span>
+          <span>ROLE-BASED PERSONAS</span><span class="dot">·</span>
+          <span>SSE STREAMING</span><span class="dot">·</span>
+          <span>OPEN SOURCE</span><span class="dot">·</span>
+          <span>SELF-HOSTED</span><span class="dot">·</span>
+          <span>GROQ + OPENROUTER</span><span class="dot">·</span>
+          <span>CHAIRMAN SYNTHESIS</span><span class="dot">·</span>
+          <span>ANONYMIZED PEER REVIEW</span><span class="dot">·</span>
+          <span>CHALLENGER CRITIQUE</span><span class="dot">·</span>
+          <span>5-ROUND DELIBERATION</span><span class="dot">·</span>
+          <span>8 LLM COUNCIL</span><span class="dot">·</span>
+          <span>ROLE-BASED PERSONAS</span><span class="dot">·</span>
+          <span>SSE STREAMING</span><span class="dot">·</span>
+          <span>OPEN SOURCE</span><span class="dot">·</span>
+          <span>SELF-HOSTED</span><span class="dot">·</span>
+          <span>GROQ + OPENROUTER</span><span class="dot">·</span>
+          <span>CHAIRMAN SYNTHESIS</span><span class="dot">·</span>
+          <span>ANONYMIZED PEER REVIEW</span><span class="dot">·</span>
+          <span>CHALLENGER CRITIQUE</span><span class="dot">·</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Section 2 — "The Problem" (Tension) -->
+  <section class="problem-section" id="problem">
+    <div class="container-1100">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">X THE PROBLEM</div>
+      </div>
+      <h2 class="section-title reveal">
+        You're trusting one model.<br>
+        And you're being misled.
+      </h2>
+      
+      <div class="problem-grid-layout">
+        <!-- Left Column: Visual Radar Graphic -->
+        <div class="problem-visual-col reveal">
+          <div class="radar-chassis">
+            <svg class="radar-svg" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid Circles -->
+              <circle cx="160" cy="160" r="140" stroke="var(--bg-border-hi)" stroke-width="0.5" fill="none" />
+              <circle cx="160" cy="160" r="100" stroke="var(--bg-border-hi)" stroke-width="0.5" fill="none" />
+              <circle cx="160" cy="160" r="60" stroke="var(--bg-border-hi)" stroke-width="0.5" fill="none" />
+              <circle cx="160" cy="160" r="20" stroke="var(--bg-border-hi)" stroke-width="0.5" fill="none" />
+              
+              <!-- Crosshair Lines -->
+              <line x1="160" y1="10" x2="160" y2="310" stroke="var(--bg-border-hi)" stroke-width="0.5" stroke-dasharray="3" />
+              <line x1="10" y1="160" x2="310" y2="160" stroke="var(--bg-border-hi)" stroke-width="0.5" stroke-dasharray="3" />
+              
+              <!-- Surveillance Eye Outline -->
+              <path d="M 60 160 Q 160 80 260 160 Q 160 240 60 160 Z" stroke="var(--bg-border-hi)" stroke-width="1" fill="none" opacity="0.85" />
+              <circle cx="160" cy="160" r="32" stroke="var(--bg-border-hi)" stroke-width="1" fill="none" opacity="0.85" />
+              
+              <!-- Radar sweep gradient or target rays -->
+              <line x1="160" y1="160" x2="260" y2="60" stroke="var(--accent)" stroke-width="0.8" opacity="0.4" />
+              <line x1="160" y1="160" x2="80" y2="240" stroke="var(--text-muted)" stroke-width="0.5" />
+              
+              <!-- Converging consensus paths -->
+              <path d="M 40 40 Q 120 120 152 152" stroke="var(--text-muted)" stroke-width="1" fill="none" stroke-dasharray="4" />
+              <path d="M 280 280 Q 200 200 168 168" stroke="var(--text-muted)" stroke-width="1" fill="none" stroke-dasharray="4" />
+              
+              <!-- Offset red pupil (surveillance target lock) -->
+              <circle cx="180" cy="170" r="8" fill="var(--accent)" />
+              <circle cx="180" cy="170" r="14" stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.4" class="radar-pulse" />
+              
+              <!-- Active sweep scanner line -->
+              <line x1="160" y1="160" x2="160" y2="20" stroke="var(--accent)" stroke-width="1.5" id="radar-sweep" />
+            </svg>
+            <div class="radar-label font-mono">DELIBERATION TARGET COORD: 180.00 / 170.00</div>
+          </div>
+        </div>
+        
+        <!-- Right Column: 2x2 Problem Cards Grid -->
+        <div class="problem-cards-col">
+          <div class="problem-grid-2x2">
+            <div class="problem-card reveal">
+              <div class="card-header">
+                <span class="card-eyebrow">DATA BIAS</span>
+                <span class="card-index font-mono">001</span>
+              </div>
+              <h3 class="card-headline">They train on mono-views.</h3>
+              <p class="card-desc">Every model reflects its provider's training alignment. Relying on a single LLM locks you into one subjective worldview.</p>
+            </div>
+            
+            <div class="problem-card reveal">
+              <div class="card-header">
+                <span class="card-eyebrow">BLACK BOX</span>
+                <span class="card-index font-mono">002</span>
+              </div>
+              <h3 class="card-headline">No trace of arguments.</h3>
+              <p class="card-desc">Standard endpoints dump a finished response. You cannot see alternate routes, rejected assertions, or logic checks.</p>
+            </div>
+            
+            <div class="problem-card reveal">
+              <div class="card-header">
+                <span class="card-eyebrow">HALLUCINATION</span>
+                <span class="card-index font-mono">003</span>
+              </div>
+              <h3 class="card-headline">Confidence without critics.</h3>
+              <p class="card-desc">A single LLM fabricates facts with total confidence. Without internal adversaries, false logs bypass system limits.</p>
+            </div>
+            
+            <div class="problem-card reveal">
+              <div class="card-header">
+                <span class="card-eyebrow">PROVIDER LOCK-IN</span>
+                <span class="card-index font-mono">004</span>
+              </div>
+              <h3 class="card-headline">Systemic blindspots.</h3>
+              <p class="card-desc">Every AI network has systematic failure modes. Relying on one model leaves you vulnerable to silent outages and failures.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Red Progress Indicator bars -->
+      <div class="grid-indicator-bars reveal">
+        <span class="bar short"></span>
+        <span class="bar long"></span>
+        <span class="bar short"></span>
+        <span class="bar short"></span>
+        <span class="bar long"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Section 3 — "Introducing debateX" (Product Reveal) -->
+  <section class="reveal-section" id="reveal">
+    <div class="container-1100">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ INTRODUCING DEBATEX</div>
+      </div>
+      <h2 class="section-title reveal">
+        <span class="title-flag">—</span> Eight models. Own the consensus. <span class="title-flag">—</span>
+      </h2>
+      <p class="section-subtext reveal">
+        A complete orchestration engine running a multi-agent dialectic entirely on your credentials. No usage limits. No lock-in.
+      </p>
+      
+      <!-- Architecture Chassis Diagram (rig.ai style) -->
+      <div class="architecture-chassis reveal">
+        <!-- Top Box: CLOUD -->
+        <div class="arch-node-cloud font-mono">CLOUD PROVIDERS</div>
+        
+        <!-- Severed Connection Line -->
+        <div class="arch-connector-severed">
+          <div class="severed-line"></div>
+          <div class="severed-cross">✕</div>
+        </div>
+        
+        <!-- Local Engine Chassis (Dashed Container) -->
+        <div class="arch-local-chassis">
+          <div class="chassis-tag font-mono">DEBATEX INSTANCE</div>
+          
+          <div class="local-nodes-grid">
+            <!-- Left: Your Code -->
+            <div class="local-node-box">
+              <div class="box-title font-mono">YOUR QUERY</div>
+              <div class="box-subtitle font-mono">PROMPTS · SCHEMAS</div>
+            </div>
+            
+            <!-- Link -->
+            <div class="node-link-line">
+              <span class="dot-green"></span>
+            </div>
+            
+            <!-- Center: debateX Engine -->
+            <div class="local-node-box highlighted">
+              <div class="box-title font-mono">DEBATEX COUNCIL</div>
+              <div class="box-status font-mono">✓ ADVERSARIAL CONSENSUS</div>
+              <div class="box-footer font-mono">CHAIRMAN · PEERS · CRITICS</div>
+            </div>
+            
+            <!-- Link -->
+            <div class="node-link-line">
+              <span class="dot-green"></span>
+            </div>
+            
+            <!-- Right: Response -->
+            <div class="local-node-box">
+              <div class="box-title font-mono">VETTED ANSWER</div>
+              <div class="box-subtitle font-mono green">&lt;5s · BIAS-FREE</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bottom Severed Connection Line -->
+        <div class="arch-connector-severed">
+          <div class="severed-line"></div>
+          <div class="severed-cross">✕</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Section 4 — "Work validated" (Value Props) -->
+  <section class="validated-section">
+    <div class="container-1100">
+      <div class="grid-split-2">
+        <!-- Left: Severed Connection Graphic -->
+        <div class="validated-visual reveal">
+          <div class="severed-graphics-chassis" style="width: 100%;">
+            <svg class="connection-svg" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+              <!-- Concentric Background Orbits -->
+              <circle cx="150" cy="120" r="100" stroke="var(--bg-border-hi)" stroke-width="0.5" stroke-dasharray="2 4" fill="none" opacity="0.3" />
+              <circle cx="150" cy="120" r="80" stroke="var(--bg-border-hi)" stroke-width="0.5" stroke-dasharray="2 4" fill="none" opacity="0.4" />
+              <circle cx="150" cy="120" r="60" stroke="var(--bg-border-hi)" stroke-width="0.5" stroke-dasharray="2 4" fill="none" opacity="0.2" />
+
+              <!-- Left Side Input Node Link (GPU/Client connection) -->
+              <rect x="15" y="103" width="34" height="34" rx="0" fill="var(--bg-surface)" stroke="var(--accent)" />
+              <text x="32" y="124" fill="var(--accent)" font-family="var(--font-mono)" font-size="10" font-weight="700" text-anchor="middle">⚙</text>
+              <line x1="49" y1="120" x2="70" y2="120" stroke="var(--green)" stroke-width="1" />
+              <rect x="55" y="117" width="6" height="6" fill="var(--green)" />
+
+              <!-- Node Boxes -->
+              <!-- Top Box (Single LLM bias) -->
+              <rect x="70" y="20" width="160" height="34" rx="0" fill="var(--bg-surface)" stroke="var(--bg-border-hi)" />
+              <text x="150" y="41" class="svg-text" text-anchor="middle" fill="var(--text-secondary)" font-family="var(--font-ui)" font-size="10">SINGLE LLM BIAS</text>
+
+              <!-- Top Severed Link -->
+              <path d="M 150 54 L 150 100" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="2 2" />
+              <rect x="120" y="68" width="60" height="18" fill="var(--bg-surface)" stroke="var(--bg-border)" rx="0" />
+              <text x="150" y="80" fill="var(--accent)" font-family="var(--font-mono)" font-size="8" font-weight="700" text-anchor="middle">✕ SEVERED</text>
+
+              <!-- Center Box (debateX Engine) -->
+              <rect x="70" y="100" width="160" height="40" rx="0" fill="var(--bg-surface)" stroke="var(--accent)" />
+              <text x="150" y="118" class="svg-text active" text-anchor="middle" font-family="var(--font-ui)" font-size="10" fill="var(--text-primary)" font-weight="700">DEBATEX ENGINE</text>
+              <text x="150" y="130" class="svg-text green" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--green)">✓ CONSENSUS ACTIVE</text>
+
+              <!-- Bottom Severed Link -->
+              <path d="M 150 140 L 150 186" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="2 2" />
+              <rect x="120" y="154" width="60" height="18" fill="var(--bg-surface)" stroke="var(--bg-border)" rx="0" />
+              <text x="150" y="166" fill="var(--accent)" font-family="var(--font-mono)" font-size="8" font-weight="700" text-anchor="middle">✕ SEVERED</text>
+
+              <!-- Bottom Box (Hallucination bias) -->
+              <rect x="70" y="186" width="160" height="34" rx="0" fill="var(--bg-surface)" stroke="var(--bg-border-hi)" />
+              <text x="150" y="207" class="svg-text" text-anchor="middle" fill="var(--text-secondary)" font-family="var(--font-ui)" font-size="10">HALLUCINATIONS</text>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Right: Description -->
+        <div class="validated-desc reveal">
+          <div class="desc-badge">🛡️ BIAS FREE</div>
+          <h2 class="section-title">Debate under pressure.</h2>
+          <p class="body-p">
+            debateX runs a five-stage dialectic on every query. The pipeline isolates hallucinations, corrects logical errors, and verifies numbers before compiling answers.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Bottom 3-cell grid -->
+      <div class="validated-bottom-grid reveal">
+        <div class="val-cell">
+          <div class="val-badge font-mono">[ 🔌 ADVERSARIAL ]</div>
+          <h3 class="val-title">Devil's advocate scrutiny</h3>
+          <p class="val-desc">Every query faces aggressive critique. A dedicated challenger model exposes edge cases, leaks, and security flaws.</p>
+        </div>
+        <div class="val-cell">
+          <div class="val-badge font-mono">[ 🔒 ANONYMOUS ]</div>
+          <h3 class="val-title">Provider-blind ranking</h3>
+          <p class="val-desc">Models evaluate drafts anonymously. Evaluators score logic without knowing which model authored the response.</p>
+        </div>
+        <div class="val-cell">
+          <div class="val-badge font-mono">[ ⏱️ SPEED ]</div>
+          <h3 class="val-title">Fast parallel routes</h3>
+          <p class="val-desc">Queries run in parallel across the council. Uses Groq's low-latency endpoints to complete debates in under 5 seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Section 5 — "Deliberation beats scale" (Timeline Steps) -->
+  <section class="how-it-works-section" id="how-it-works">
+    <div class="container-1100">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ DELIBERATION BEATS SCALE</div>
+      </div>
+      <h2 class="section-title reveal">Deliberation beats scale.</h2>
+      <p class="section-subtext reveal">debateX is a modular council—model, context, and roles engineered for verified accuracy.</p>
+      
+      <div class="timeline-split-layout">
+        <!-- Left: Steps List -->
+        <div class="timeline-steps-col">
+          <!-- Step 1 -->
+          <div class="step-card active reveal" data-step="s1">
+            <span class="step-label font-mono">STEP 01</span>
+            <h3 class="step-heading">Independent responses.</h3>
+            <p class="step-description">Council models generate independent, blind initial answers. Captures a broad set of perspectives without peer bias.</p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="step-card reveal" data-step="s2">
+            <span class="step-label font-mono">STEP 02</span>
+            <h3 class="step-heading">Anonymized review.</h3>
+            <p class="step-description">Models evaluate anonymized drafts, outputting critiques and a strict ranking list (Response A, B, C).</p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div class="step-card reveal" data-step="s3">
+            <span class="step-label font-mono">STEP 03</span>
+            <h3 class="step-heading">Defend or Revise.</h3>
+            <p class="step-description">Models recognize their original drafts and choose to either defend their reasoning or revise their answers.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card reveal" data-step="s4">
+            <span class="step-label font-mono">STEP 04</span>
+            <h3 class="step-heading">Challenger attack.</h3>
+            <p class="step-description">The lowest-ranked model is assigned to identify flaws, assumptions, and edge cases in the leading answers.</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-card reveal" data-step="s5">
+            <span class="step-label font-mono">STEP 05</span>
+            <h3 class="step-heading">Chairman consensus.</h3>
+            <p class="step-description">The Chairman synthesizes the complete historical JSON transcript into a single master consensus answer.</p>
+          </div>
+        </div>
+        
+        <!-- Right: Visual Panel Container -->
+        <div class="timeline-visual-col reveal">
+          <div class="visual-panel-card">
+            <div class="visual-panel-title font-mono">COUNCIL DELIBERATION STAGE</div>
+            
+            <div class="visual-stage-content" id="stage-visuals">
+              <!-- Visuals injected by script matching active step -->
+              <div class="stage-slide active" id="slide-s1">
+                <div class="slide-meta font-mono">ROUND 1 · PARALLEL DRAFTS</div>
+                <div class="progress-bar-group">
+                  <div class="bar-label font-mono">Llama-3.3-70B</div>
+                  <div class="bar-fill-track"><div class="bar-fill green" style="width: 100%;"></div></div>
+                </div>
+                <div class="progress-bar-group">
+                  <div class="bar-label font-mono">GPT-OSS-120B</div>
+                  <div class="bar-fill-track"><div class="bar-fill green" style="width: 100%;"></div></div>
+                </div>
+                <div class="progress-bar-group">
+                  <div class="bar-label font-mono">Qwen3-32B</div>
+                  <div class="bar-fill-track"><div class="bar-fill green" style="width: 100%;"></div></div>
+                </div>
+                <p class="slide-footer font-mono">Draft answers locked · 3/3 responded</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Section 6 — Stats / Proof Strip -->
+  <section class="stats-strip">
+    <div class="stats-container">
+      <div class="stat-item reveal">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Deliberation Rounds</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-number">8</span>
+        <span class="stat-label">LLMs in Council</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Cognitive Roles</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <span class="stat-number">&lt;$0.01</span>
+        <span class="stat-label">Avg Cost Per Query</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Section 7 — Capabilities Grid -->
+  <section class="capabilities-section" id="capabilities">
+    <div class="container-1100">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ CAPABILITIES</div>
+      </div>
+      <h2 class="section-title reveal">Engineered for truth.</h2>
+      
+      <div class="capabilities-grid">
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 01 ]</div>
+          <h3 class="cap-title">Query classification</h3>
+          <p class="cap-body">Fast dual-path routing maps incoming queries to categories (code, factual, ethical, math, creative) for targeted model selection.</p>
+        </div>
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 02 ]</div>
+          <h3 class="cap-title">Dynamic persona allocation</h3>
+          <p class="cap-body">Rotates specialized system personas (Reasoner, Fact-Checker, Steelmanner, Devil's Advocate, Chairman) deterministically per query.</p>
+        </div>
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 03 ]</div>
+          <h3 class="cap-title">Anonymized peer review</h3>
+          <p class="cap-body">Forces council models to review peer arguments without provider name bias, exposing logical flaws without favoritism.</p>
+        </div>
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 04 ]</div>
+          <h3 class="cap-title">Challenger critique</h3>
+          <p class="cap-body">Assigns a dedicated adversary model to identify vulnerabilities and edge cases in the leading answers before synthesis.</p>
+        </div>
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 05 ]</div>
+          <h3 class="cap-title">Real-time SSE stream</h3>
+          <p class="cap-body">Watch deliberations unfold live. Complete transparency with stages, individual rankings, and critique streams directly in the UI.</p>
+        </div>
+        <div class="cap-cell reveal">
+          <div class="cap-num">[ 06 ]</div>
+          <h3 class="cap-title">Cost estimation</h3>
+          <p class="cap-body">Calculates token-based projected cost in USD per query using active API pricing tables before initiating the council.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Section 8 — Terminal / Live Demo Block -->
+  <section class="terminal-section">
+    <div class="container-720">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ LIVE OUTPUT STREAM</div>
+      </div>
+      <h2 class="section-title reveal">Watch the council debate.</h2>
+      
+      <div class="terminal-chassis reveal">
+        <div class="terminal-chrome">
+          <span class="chrome-dot red"></span>
+          <span class="chrome-dot yellow"></span>
+          <span class="chrome-dot green"></span>
+          <span class="chrome-title">debateX · localhost:8001</span>
+        </div>
+        <div class="terminal-body font-mono" id="terminal-stream">
+          <!-- Typewriter animation injects lines here -->
+          <div class="terminal-line placeholder">Initializing stream context...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Section 9 — Early Access CTA -->
+  <section class="cta-section" id="waitlist-section">
+    <div class="cta-glow"></div>
+    <div class="container-720">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ EARLY ACCESS</div>
+      </div>
+      <h2 class="section-title reveal">Join the waitlist.</h2>
+      <p class="cta-subtext reveal">debateX is open-source and self-hostable. Sign up to receive deployment scripts and early release versions.</p>
+      
+      <form class="email-form waitlist-form reveal centered-form">
+        <input type="email" placeholder="Enter your developer email" class="email-input" required>
+        <button type="submit" class="cta-btn btn-primary">Request Access</button>
+      </form>
+      
+      <p class="cta-footnote reveal">No account required. MIT License. Self-hostable via Docker.</p>
+    </div>
+  </section>
+
+  <!-- 11. Section 10 — FAQ Accordion -->
+  <section class="faq-section" id="faq">
+    <div class="container-720">
+      <div class="section-header-box reveal">
+        <div class="eyebrow-box">✓ FAQ</div>
+      </div>
+      <h2 class="section-title reveal">Technical Details</h2>
+      
+      <div class="faq-accordion">
+        <!-- Q1 -->
+        <div class="faq-row reveal">
+          <div class="faq-trigger">
+            <span class="faq-num">01</span>
+            <span class="faq-question">What is debateX?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-content">
+            <p>debateX is a self-hosted deliberation engine that orchestrates a panel of Large Language Models to answer questions. It reduces bias and error rates by passing draft answers through review, challenge, and synthesis phases before presenting a final consensus response.</p>
+          </div>
+        </div>
+        
+        <!-- Q2 -->
+        <div class="faq-row reveal">
+          <div class="faq-trigger">
+            <span class="faq-num">02</span>
+            <span class="faq-question">Which models are in the council?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-content">
+            <p>debateX integrates high-performance models from both Groq (Llama-3.3-70B, GPT-OSS-120B, Qwen3-32B, Llama-3.1-8B) and OpenRouter (DeepSeek-V4, GLM-4.5, LFM-2.5, Nemotron-3-nano) depending on API key configuration and query classification.</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-row reveal">
+          <div class="faq-trigger">
+            <span class="faq-num">03</span>
+            <span class="faq-question">How does the 5-round pipeline work?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-content">
+            <p>It processes queries through five distinct stages: (1) Respond - council models submit independent answers; (2) Rank - models evaluate anonymized drafts; (3) Debate - models revise or defend their stances under peer review; (4) Critique - a challenger model points out remaining flaws; (5) Synthesis - a chairman model compiles a final consensus answer.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-row reveal">
+          <div class="faq-trigger">
+            <span class="faq-num">04</span>
+            <span class="faq-question">Is it free to use?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-content">
+            <p>debateX itself is entirely open-source and free to self-host. You only pay for your model token consumption through your personal Groq or OpenRouter API keys (and OpenRouter offers several free-tier models that debateX fully utilizes).</p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-row reveal">
+          <div class="faq-trigger">
+            <span class="faq-num">05</span>
+            <span class="faq-question">Can I self-host it?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="faq-content">
+            <p>Yes. The platform is designed for containerized deployment. With one-click scripts (start.sh / run.bat), you can spin up the FastAPI backend (port 8001) and Vite React frontend (port 5173) in under 5 minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">debateX</a>
+        <p class="footer-tagline">Multi-LLM deliberation engine. Council-vetted answers.</p>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-column">
+          <a href="https://github.com/pvsaravanan/debateX" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="#">Twitter/X</a>
+          <a href="#">LinkedIn</a>
+        </div>
+        <div class="footer-column">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Documentation</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <span class="copyright">&copy; 2026 debateX — MIT License</span>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span class="status-text font-mono">All systems deliberating</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
