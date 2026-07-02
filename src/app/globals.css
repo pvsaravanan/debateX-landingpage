@@ -26,9 +26,9 @@
   --red:            #FF5924;
   
   /* Typography */
-  --font-display:   'Space Grotesk', sans-serif;
-  --font-ui:        'Space Grotesk', sans-serif;
-  --font-body:      'Space Grotesk', sans-serif;
+  --font-display:   var(--font-outfit), sans-serif;
+  --font-ui:        var(--font-outfit), sans-serif;
+  --font-body:      var(--font-outfit), sans-serif;
   --font-mono:      'JetBrains Mono', monospace;
   
   /* Spacing & Layout */
@@ -52,7 +52,7 @@ html {
   background-color: var(--accent); /* Matches Hero and Footer for overscroll */
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   scrollbar-width: thin;
@@ -564,10 +564,10 @@ h1, h2, h3 {
   font-style: italic;
   font-size: 92.992px;
   line-height: 0.95;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.015em;
   margin-bottom: 24px;
   color: var(--bg-base);
-  font-weight: 700;
+  font-weight: 400;
   opacity: 0;
   transform: translateY(40px);
   animation: heroEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
@@ -970,7 +970,7 @@ h1, h2, h3 {
 }
 
 .problem-card .card-headline {
-  font-family: 'Chalet', 'Inter', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 21.6px;
   font-weight: 700;
   color: var(--text-primary);
@@ -2408,3 +2408,8 @@ h1, h2, h3 {
     display: none;
   }
 }
+
+.circle-period {
+  font-family: var(--font-outfit), sans-serif !important;
+}
+

@@ -47,8 +47,8 @@ export default function ProblemSection() {
                 <span className="eyebrow-text">THE PROBLEM</span>
               </div>
               <h2 className="problem-title reveal revealed">
-                You're trusting one model<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span><br />
-                And you're being misled<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span>
+                You're trusting one model<span className="circle-period">.</span><br />
+                And you're being misled<span className="circle-period">.</span>
               </h2>
             </div>
 
@@ -187,7 +187,7 @@ export default function ProblemSection() {
                 <div className="eyebrow-box">✓ INTRODUCING DEBATEX</div>
               </div>
               <h2 className="section-title reveal revealed" style={{ position: 'relative', zIndex: 1, maxWidth: '800px', margin: '0 auto', fontSize: '56px', letterSpacing: '-0.04em', lineHeight: '1', paddingBottom: '16px' }}>
-                <span className="gradient-text-light">Eight models<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span><br/>Own the consensus<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span></span>
+                <span className="gradient-text-light">Eight models<span className="circle-period">.</span><br/>Own the consensus<span className="circle-period">.</span></span>
               </h2>
               <p className="section-subtext reveal revealed" style={{ position: 'relative', zIndex: 1 }}>
                 A complete orchestration engine running a multi-agent dialectic entirely on your credentials. No usage limits. No lock-in.
@@ -373,7 +373,7 @@ export default function ProblemSection() {
                   </div>
                   <h2 className="section-title" style={{ textAlign: 'left', marginBottom: '24px' }}>
                     <span className="gradient-text-light">Debate under pressure</span>
-                    <span style={{ display: 'inline-block', width: '12px', height: '12px', backgroundColor: 'var(--text-primary)', marginLeft: '8px' }}></span>
+                    <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--text-primary)', marginLeft: '8px' }}></span>
                   </h2>
                   <p className="body-p">
                     debateX runs a five-stage dialectic on every query. The pipeline isolates hallucinations, corrects logical errors, and verifies numbers before compiling answers.

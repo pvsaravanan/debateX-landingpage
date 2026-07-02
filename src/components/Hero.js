@@ -22,8 +22,8 @@ export default function Hero() {
         <div className="hero-content text-reveal">
           <h1 className="hero-title">
             Multi-LLM<br />
-            Deliberation<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span><br />
-            No guesses<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span> No bias<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span>
+            Deliberation<span className="circle-period">.</span><br />
+            No guesses<span className="circle-period">.</span> No bias<span className="circle-period">.</span>
           </h1>
           <p className="hero-subtext">
             A self-hosted cognitive consensus engine orchestrating an adversarial council of diverse language models. debateX cross-examines claims and delivers vetted certainty.
