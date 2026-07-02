@@ -1,13 +1,40 @@
 import { NextResponse } from "next/server";
 
+const ALLOWED_ORIGINS = ["https://debatexai.vercel.app", "http://localhost:3000", "http://localhost:3001"];
+
+function getCorsHeaders(request) {
+  const origin = request.headers.get("origin");
+  const headers = {
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    headers["Access-Control-Allow-Origin"] = origin;
+  } else {
+    headers["Access-Control-Allow-Origin"] = "https://debatexai.vercel.app";
+  }
+
+  return headers;
+}
+
+export async function OPTIONS(request) {
+  return new NextResponse(null, {
+    status: 204,
+    headers: getCorsHeaders(request),
+  });
+}
+
 export async function POST(request) {
+  const headers = getCorsHeaders(request);
+
   try {
     const { email } = await request.json();
 
     if (!email || !email.includes("@")) {
       return NextResponse.json(
         { error: "A valid email address is required." },
-        { status: 400 }
+        { status: 400, headers }
       );
     }
 
@@ -19,7 +46,7 @@ export async function POST(request) {
       return NextResponse.json({
         success: true,
         message: "Demo mode: Email validated, but RESEND_API_KEY environment variable is missing."
-      });
+      }, { headers });
     }
 
     // Send email using Resend REST API
@@ -43,16 +70,16 @@ export async function POST(request) {
       console.error("Resend API error response:", data);
       return NextResponse.json(
         { error: data.message || "Failed to submit waitlist registration." },
-        { status: response.status }
+        { status: response.status, headers }
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true }, { headers });
   } catch (error) {
     console.error("Waitlist API handler error:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred. Please try again." },
-      { status: 500 }
+      { status: 500, headers }
     );
   }
 }
