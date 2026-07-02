@@ -31,8 +31,6 @@ const faqData = [
 ];
 
 function FAQRow({ num, question, answer, isActive, onClick }) {
-  const contentRef = useRef(null);
-
   return (
     <div className={`faq-row ${isActive ? "faq-active" : ""}`}>
       <div className="faq-trigger" onClick={onClick}>
@@ -42,14 +40,7 @@ function FAQRow({ num, question, answer, isActive, onClick }) {
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </div>
-      <div
-        ref={contentRef}
-        className="faq-content"
-        style={{
-          maxHeight: isActive ? `${contentRef.current?.scrollHeight}px` : "0px",
-          transition: "max-height 300ms cubic-bezier(0.16, 1, 0.3, 1)"
-        }}
-      >
+      <div className="faq-content">
         <p>{answer}</p>
       </div>
     </div>
