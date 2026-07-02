@@ -1,4 +1,4 @@
-import { Space_Grotesk, JetBrains_Mono, Chivo_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Chivo_Mono, Source_Serif_4 } from "next/font/google";
 import { GeistPixelSquare } from "geist/font/pixel";
 import "./globals.css";
 
@@ -20,6 +20,13 @@ const chivoMono = Chivo_Mono({
   weight: ["400", "500", "700"],
 });
 
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  style: ["italic"],
+  weight: ["400", "700"],
+});
+
 export const metadata = {
   title: "debateX — Self-Hosted Multi-LLM Deliberation & Truth Engine",
   description: "debateX is a self-hosted, open-source multi-LLM deliberation engine that passes queries through an anonymized 5-round debate council to eliminate single-model hallucinations and bias.",
@@ -27,7 +34,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${GeistPixelSquare.variable} ${chivoMono.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${GeistPixelSquare.variable} ${chivoMono.variable} ${sourceSerif.variable}`}>
       <head>
         <link rel="icon" href="/debateX.svg" type="image/svg+xml" />
       </head>

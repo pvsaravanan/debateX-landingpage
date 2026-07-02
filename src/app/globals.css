@@ -560,7 +560,8 @@ h1, h2, h3 {
 
 /* Hero entrance animations */
 .hero-title {
-  font-family: 'Chalet', 'Inter', sans-serif;
+  font-family: var(--font-source-serif), serif;
+  font-style: italic;
   font-size: 92.992px;
   line-height: 0.95;
   letter-spacing: -0.04em;
