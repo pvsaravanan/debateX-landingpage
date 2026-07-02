@@ -38,7 +38,7 @@ function FAQRow({ num, question, answer, isActive, onClick }) {
       <div className="faq-trigger" onClick={onClick}>
         <span className="faq-num">{num}</span>
         <span className="faq-question">{question}</span>
-        <svg className="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg className="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" role="img">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
       </div>
@@ -64,12 +64,12 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="faq-section" id="faq">
+    <section className="faq-section" id="faq" style={{ borderTop: '0.5px solid var(--bg-border-hi)', padding: '80px 0 64px' }}>
       <div className="container-720">
         <div className="section-header-box reveal revealed">
           <div className="eyebrow-box">✓ FAQ</div>
         </div>
-        <h2 className="section-title reveal revealed">Technical Details</h2>
+        <h2 className="section-title reveal revealed"><span className="gradient-text-light">Technical Details</span></h2>
         
         <div className="faq-accordion">
           {faqData.map((faq, idx) => (

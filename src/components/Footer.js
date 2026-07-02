@@ -3,9 +3,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-brand">
-          <a href="#" className="footer-logo">
-            <img src="/debateX.svg" alt="debateX logo" style={{ height: "32px", width: "auto" }} />
-          </a>
+          <a href="#" className="footer-logo" style={{ fontSize: "48px", fontWeight: "700", fontFamily: "var(--font-display)", display: "block", marginBottom: "8px", lineHeight: "1" }}>X</a>
           <p className="footer-tagline">Multi-LLM deliberation engine. Council-vetted answers.</p>
         </div>
         

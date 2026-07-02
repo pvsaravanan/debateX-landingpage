@@ -1,18 +1,35 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="hero-section">
       <div className="hero-top-zone">
+        {/* Floating particles */}
+        <div className="hero-particles">
+          {mounted && Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="hero-particle" style={{ '--rand': Math.random() }}></div>
+          ))}
+        </div>
+
         <div className="hero-content text-reveal">
-          <h1 className="hero-title reveal revealed">
+          <h1 className="hero-title">
             Multi-LLM<br />
-            deliberation.<br />
-            No guesses. No bias.
+            Deliberation<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span><br />
+            No guesses<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span> No bias<span style={{fontFamily: 'Helvetica, Arial, sans-serif'}}>.</span>
           </h1>
-          <p className="hero-subtext reveal revealed">
-            An open-source cognitive consensus engine orchestrating an adversarial council of diverse language models. debateX cross-examines claims and delivers vetted certainty.
+          <p className="hero-subtext">
+            A self-hosted cognitive consensus engine orchestrating an adversarial council of diverse language models. debateX cross-examines claims and delivers vetted certainty.
           </p>
           
-          <div className="hero-actions reveal revealed">
+          <div className="hero-actions">
             <a href="#waitlist-section" className="cta-btn btn-primary">Join Waitlist</a>
             <a href="#how-it-works" className="cta-btn btn-secondary">Our Approach</a>
           </div>

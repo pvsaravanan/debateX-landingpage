@@ -21,17 +21,25 @@ const chivoMono = Chivo_Mono({
 });
 
 export const metadata = {
-  title: "debateX — Multi-LLM Deliberation & Truth Engine",
-  description: "debateX is an open-source, self-hosted multi-LLM deliberation engine that passes queries through an anonymized 5-round debate council to eliminate single-model hallucinations and bias.",
+  title: "debateX — Self-Hosted Multi-LLM Deliberation & Truth Engine",
+  description: "debateX is a self-hosted, open-source multi-LLM deliberation engine that passes queries through an anonymized 5-round debate council to eliminate single-model hallucinations and bias.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${GeistPixelSquare.variable} ${chivoMono.variable}`}>
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>" />
+        <link rel="icon" href="/debateX.svg" type="image/svg+xml" />
       </head>
       <body>
+        {/* Animated background effects */}
+        <div className="bg-effects">
+          <div className="bg-orb bg-orb-1"></div>
+          <div className="bg-orb bg-orb-2"></div>
+          <div className="bg-orb bg-orb-3"></div>
+        </div>
+        <div className="dot-grid"></div>
+        <div className="grain-overlay"></div>
         <div className="scanlines"></div>
         {children}
       </body>
